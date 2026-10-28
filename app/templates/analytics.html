@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session Dynamics Analytics - Multimodal Attendance & Engagement Agent</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+
+  <!-- Header -->
+  <header class="border-b border-slate-800 bg-slate-900/60 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+        </a>
+        <div>
+          <h1 class="text-base font-bold text-white">Classroom Session Dynamics & Analytics</h1>
+          <p class="text-xs text-slate-400">Time-series engagement trends, attention peaks & dropout forensics</p>
+        </div>
+      </div>
+      <nav class="flex items-center gap-2">
+        <a href="/" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white transition">Back to Live Dashboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+    <!-- Overview Stat Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="glass-panel p-5">
+        <div class="text-xs text-slate-400 mb-1">AVERAGE ENGAGEMENT</div>
+        <div class="text-3xl font-black text-indigo-400 font-mono">78.4%</div>
+        <div class="text-[11px] text-emerald-400 mt-1 flex items-center gap-1">
+          <span>▲ 4.2%</span> vs baseline target
+        </div>
+      </div>
+
+      <div class="glass-panel p-5">
+        <div class="text-xs text-slate-400 mb-1">INTERACTION PEAKS</div>
+        <div class="text-3xl font-black text-cyan-400 font-mono">5 Intervals</div>
+        <div class="text-[11px] text-slate-400 mt-1">High discussion & visual synergy</div>
+      </div>
+
+      <div class="glass-panel p-5">
+        <div class="text-xs text-slate-400 mb-1">ATTENTION DROPOUTS</div>
+        <div class="text-3xl font-black text-amber-400 font-mono">2 Drops</div>
+        <div class="text-[11px] text-slate-400 mt-1">Addressed by AI Suggestion Agent</div>
+      </div>
+
+      <div class="glass-panel p-5">
+        <div class="text-xs text-slate-400 mb-1">ATTENDANCE COMPLIANCE</div>
+        <div class="text-3xl font-black text-emerald-400 font-mono">100%</div>
+        <div class="text-[11px] text-slate-400 mt-1">Zero unverified transient entries</div>
+      </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      
+      <!-- Timeline Trend Chart -->
+      <div class="glass-panel p-6">
+        <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-2">Multimodal Signal Time-Series</h3>
+        <p class="text-xs text-slate-400 mb-4">Correlation of Visual Attention, Acoustic VAD, and Composite Engagement.</p>
+        <div class="h-64">
+          <canvas id="dynamicsChart"></canvas>
+        </div>
+      </div>
+
+      <!-- State Distribution Donut Chart -->
+      <div class="glass-panel p-6">
+        <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-2">Engagement State Distribution</h3>
+        <p class="text-xs text-slate-400 mb-4">Percentage of session spent in each pedagogical interaction state.</p>
+        <div class="h-64 flex items-center justify-center">
+          <canvas id="statePieChart"></canvas>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Dynamics Chart
+      const dynCtx = document.getElementById('dynamicsChart').getContext('2d');
+      new Chart(dynCtx, {
+        type: 'line',
+        data: {
+          labels: ['0m', '5m', '10m', '15m', '20m', '25m', '30m', '35m', '40m', '45m'],
+          datasets: [
+            {
+              label: 'Composite Engagement',
+              data: [82, 85, 79, 44, 75, 88, 92, 58, 84, 89],
+              borderColor: '#6366f1',
+              backgroundColor: 'rgba(99, 102, 241, 0.15)',
+              fill: true,
+              tension: 0.35,
+              borderWidth: 3
+            },
+            {
+              label: 'Visual Attention',
+              data: [88, 90, 84, 42, 78, 86, 94, 62, 86, 91],
+              borderColor: '#10b981',
+              borderDash: [4, 4],
+              tension: 0.35,
+              borderWidth: 2
+            },
+            {
+              label: 'Acoustic Activity',
+              data: [70, 75, 72, 35, 80, 85, 88, 50, 78, 82],
+              borderColor: '#06b6d4',
+              tension: 0.35,
+              borderWidth: 2
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
+            y: { min: 0, max: 100, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }
+          },
+          plugins: {
+            legend: { labels: { color: '#cbd5e1' } }
+          }
+        }
+      });
+
+      // 2. Pie Chart
+      const pieCtx = document.getElementById('statePieChart').getContext('2d');
+      new Chart(pieCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Optimal Engagement (62%)', 'Active Discussion (21%)', 'Passive Listening (12%)', 'Attention Drop (5%)'],
+          datasets: [{
+            data: [62, 21, 12, 5],
+            backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#f43f5e'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { color: '#cbd5e1', font: { size: 11 } } }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

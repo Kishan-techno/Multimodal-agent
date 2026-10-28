@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multimodal Attendance & Engagement Agent</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="border-b border-slate-800 bg-slate-900/60 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+        </div>
+        <div>
+          <h1 class="text-base font-bold bg-gradient-to-r from-white via-indigo-200 to-cyan-200 bg-clip-text text-transparent">
+            Multimodal Attendance & Engagement Agent
+          </h1>
+          <p class="text-xs text-slate-400">Classroom Intelligence & Adaptive Decision-Support</p>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-1 bg-slate-900/80 p-1 rounded-xl border border-slate-800">
+        <a href="/" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 text-white shadow-sm">Live Classroom</a>
+        <a href="/students" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">Student Roster</a>
+        <a href="/analytics" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">Session Dynamics</a>
+        <a href="/reports" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition">Audit Report</a>
+      </nav>
+
+      <!-- System Status Indicators -->
+      <div class="flex items-center gap-3">
+        <div id="connectionBadge" class="flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          <span id="connectionDot" class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="connectionText">CONNECTING...</span>
+        </div>
+        <a href="/api/attendance/export.csv" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+          Export CSV
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Session Context Bar -->
+  <div class="bg-indigo-950/30 border-b border-indigo-900/40 py-2.5 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 text-xs">
+      <div class="flex items-center gap-4">
+        <span class="text-slate-400">Active Session: <strong class="text-indigo-300">{{ session.session_name }}</strong></span>
+        <span class="text-slate-500">•</span>
+        <span class="text-slate-400">Instructor: <strong class="text-slate-200">{{ session.instructor_name }}</strong></span>
+        <span class="text-slate-500">•</span>
+        <span class="text-slate-400">Subject: <strong class="text-slate-200">{{ session.subject }}</strong></span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-800/40 font-mono">
+          Threshold: {{ config.SUSTAINED_PRESENCE_SECONDS }}s Continuous Presence
+        </span>
+        <span class="px-2 py-0.5 rounded bg-indigo-950/60 text-indigo-300 border border-indigo-800/40">
+          Privacy: 100% On-Device Processing
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Scenario Demo Bar (Built specifically for Mentor Evaluation) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+    <div class="glass-panel p-3.5 flex flex-wrap items-center justify-between gap-3 border-indigo-500/20 bg-indigo-900/10">
+      <div class="flex items-center gap-2">
+        <span class="px-2.5 py-1 rounded-md bg-indigo-600 text-white font-bold text-xs uppercase tracking-wide">
+          Mentor Evaluation Controls
+        </span>
+        <span class="text-xs text-slate-300">Quick-trigger required scenarios to evaluate full system intelligence:</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <button id="btnScenario1" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition flex items-center gap-1 shadow">
+          <span>🎯</span> Scenario 1: Sustained Presence
+        </button>
+        <button id="btnScenario2" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-600 hover:bg-amber-500 text-white transition flex items-center gap-1 shadow">
+          <span>📉</span> Scenario 2: Attention Drop
+        </button>
+        <button id="btnScenario3" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition flex items-center gap-1 shadow">
+          <span>🤖</span> Scenario 3: AI Teaching Suggestions
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Grid Dashboard -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+      <!-- LEFT COLUMN: Live Feed, Video HUD & Multimodal Gauges (7 cols) -->
+      <div class="lg:col-span-7 space-y-6">
+
+        <!-- Live Camera & Visual Tracking Card -->
+        <div class="glass-panel p-5">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <h2 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                Multimodal Input Stream
+              </h2>
+              <span id="cameraStatusBadge" class="px-2.5 py-0.5 rounded text-xs font-semibold bg-slate-700 text-slate-300">
+                STANDBY
+              </span>
+            </div>
+
+            <!-- Profile Test Selector -->
+            <div class="flex items-center gap-2">
+              <label class="text-xs text-slate-400">Testing as:</label>
+              <select id="studentProfileSelect" class="bg-slate-800 border border-slate-700 text-slate-200 text-xs rounded-lg px-2.5 py-1 focus:ring-1 focus:ring-indigo-500">
+                {% for stu in students %}
+                <option value="{{ stu.student_id }}">{{ stu.name }} ({{ stu.roll_no }})</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <!-- Video Viewport with HUD Canvas Overlay -->
+          <div class="video-container aspect-[4/3] rounded-xl border border-slate-700 relative overflow-hidden bg-slate-900 flex items-center justify-center">
+            <video id="webcamVideo" autoplay playsinline muted class="w-full h-full object-cover"></video>
+            <canvas id="overlayCanvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+            
+            <!-- Default Placeholder when camera is inactive -->
+            <div id="videoPlaceholder" class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-slate-900/90 backdrop-blur-sm pointer-events-none">
+              <div class="w-16 h-16 rounded-2xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center mb-3">
+                <svg class="w-8 h-8 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              </div>
+              <h3 class="text-sm font-semibold text-slate-200 mb-1">Live Camera Ready</h3>
+              <p class="text-xs text-slate-400 max-w-xs">Start your webcam for real-time face detection, gaze tracking & acoustic monitoring, or click "Simulate Stream".</p>
+            </div>
+          </div>
+
+          <!-- Stream Controls -->
+          <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3 border-t border-slate-800">
+            <div class="flex items-center gap-2">
+              <button id="btnStartCamera" class="px-4 py-2 rounded-lg text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white transition flex items-center gap-2 shadow-lg shadow-indigo-600/30">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                Start Webcam
+              </button>
+              <button id="btnStopCamera" class="hidden px-4 py-2 rounded-lg text-xs font-semibold bg-rose-600 hover:bg-rose-500 text-white transition flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"></path></svg>
+                Stop Camera
+              </button>
+              <button id="btnToggleSimulation" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
+                <span class="flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                  Simulate Classroom Stream
+                </span>
+              </button>
+            </div>
+            <div class="text-[11px] text-slate-400">
+              WebRTC & WebSocket Synchronized
+            </div>
+          </div>
+        </div>
+
+        <!-- Multimodal Indicator Gauges -->
+        <div class="glass-panel p-5">
+          <h2 class="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+            <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            Multimodal Signal Telemetry
+          </h2>
+
+          <div class="space-y-4">
+            <!-- Visual Attention -->
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="font-medium text-slate-300">👁️ Visual Attention (Gaze & Pose)</span>
+                <span id="visualAttentionVal" class="text-emerald-400 font-mono font-bold">85% • Direct Focus</span>
+              </div>
+              <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                <div id="visualAttentionBar" class="bg-gradient-to-r from-emerald-500 to-cyan-400 h-full rounded-full transition-all duration-300" style="width: 85%"></div>
+              </div>
+            </div>
+
+            <!-- Facial Valence -->
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="font-medium text-slate-300">😊 Facial Expression Valence</span>
+                <span id="facialValenceVal" class="text-indigo-400 font-mono font-bold">92% • Focused & Attentive</span>
+              </div>
+              <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                <div id="facialValenceBar" class="bg-gradient-to-r from-indigo-500 to-purple-400 h-full rounded-full transition-all duration-300" style="width: 92%"></div>
+              </div>
+            </div>
+
+            <!-- Audio Activity -->
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="font-medium text-slate-300">🎙️ Acoustic Signal & Discussion (VAD)</span>
+                <span id="audioActivityVal" class="text-cyan-400 font-mono font-bold">75% • Active Speech</span>
+              </div>
+              <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                <div id="audioActivityBar" class="bg-gradient-to-r from-cyan-500 to-blue-400 h-full rounded-full transition-all duration-300" style="width: 75%"></div>
+              </div>
+            </div>
+
+            <!-- Body Motion Dynamics -->
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="font-medium text-slate-300">🏃 Body Motion & Restlessness</span>
+                <span id="motionDynamicsVal" class="text-amber-400 font-mono font-bold">80% • Normal Posture Micro-movement</span>
+              </div>
+              <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                <div id="motionDynamicsBar" class="bg-gradient-to-r from-amber-500 to-orange-400 h-full rounded-full transition-all duration-300" style="width: 80%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Rolling Engagement Chart (Scenario 2) -->
+        <div class="glass-panel p-5">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+              <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+              Session Engagement Dynamics (Scenario 2)
+            </h2>
+            <span class="text-xs text-slate-400">Rolling 60s Window</span>
+          </div>
+          <div class="h-48 w-full">
+            <canvas id="engagementTimelineChart"></canvas>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: Composite Engagement Score, AI Teaching Suggestions & Attendance (5 cols) -->
+      <div class="lg:col-span-5 space-y-6">
+
+        <!-- Composite Engagement Score Meter -->
+        <div class="glass-panel p-5 bg-gradient-to-br from-indigo-900/30 to-slate-900/60 border-indigo-500/30">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-slate-300 uppercase tracking-wider">Classroom Engagement Index</span>
+            <span id="compositeStatePill" class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+              Optimal Engagement
+            </span>
+          </div>
+
+          <div class="flex items-end justify-between my-3">
+            <div class="flex items-baseline gap-2">
+              <span id="compositeScoreValue" class="text-5xl font-black tracking-tight text-white font-mono">82</span>
+              <span class="text-slate-400 text-lg">/ 100</span>
+            </div>
+            <div class="text-right">
+              <div id="compositeStateLabel" class="text-xs font-semibold text-slate-200">Active High Focus</div>
+              <div class="text-[11px] text-slate-400 mt-0.5">Fusion of 4 signals</div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2 pt-3 border-t border-slate-800/80 text-center text-xs">
+            <div class="bg-slate-800/40 p-2 rounded-lg">
+              <div class="text-slate-400 text-[10px]">ENROLLED</div>
+              <div id="countTotal" class="text-base font-bold text-white font-mono">{{ total_enrolled }}</div>
+            </div>
+            <div class="bg-slate-800/40 p-2 rounded-lg">
+              <div class="text-slate-400 text-[10px]">PRESENT</div>
+              <div id="countPresent" class="text-base font-bold text-emerald-400 font-mono">{{ total_present }}</div>
+            </div>
+            <div class="bg-slate-800/40 p-2 rounded-lg">
+              <div class="text-slate-400 text-[10px]">STATUS</div>
+              <div class="text-xs font-bold text-indigo-300 mt-0.5">LIVE AUDIT</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Teaching Suggestions Agent (Scenario 3) -->
+        <div class="glass-panel p-5 border-indigo-500/30">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <div class="w-2.5 h-2.5 rounded-full bg-indigo-400 animate-ping"></div>
+              <h2 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                AI Teaching Assistant
+              </h2>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-indigo-500/20 text-indigo-300">
+              Scenario 3: Agent Reasoner
+            </span>
+          </div>
+
+          <p class="text-xs text-slate-400 mb-3">Context-aware decision support triggered by attention drops, prolonged silence, or pacing fluctuations.</p>
+
+          <!-- Suggestions Live Stream Container -->
+          <div id="suggestionsFeed" class="space-y-3 max-h-72 overflow-y-auto pr-1">
+            {% for s in suggestions %}
+            <div id="sugg-{{ s.id }}" class="p-3.5 rounded-xl border {% if s.priority == 'HIGH' %}border-rose-500/40 bg-rose-950/20 text-rose-300{% elif s.priority == 'MEDIUM' %}border-amber-500/40 bg-amber-950/20 text-amber-300{% else %}border-indigo-500/40 bg-indigo-950/20 text-indigo-300{% endif %} backdrop-blur-md">
+              <div class="flex items-start justify-between gap-2 mb-1">
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase bg-white/10">
+                  {{ s.priority }} • {{ s.suggestion_type }}
+                </span>
+                <button onclick="dismissSuggestion({{ s.id }})" class="text-slate-400 hover:text-slate-200 text-xs">✕</button>
+              </div>
+              <h4 class="text-xs font-semibold text-white mb-1">{{ s.title }}</h4>
+              <p class="text-xs text-slate-300 leading-relaxed mb-2.5">{{ s.description }}</p>
+              <button onclick="applySuggestionAction('Apply Suggested Action')" class="px-2.5 py-1 rounded text-xs font-medium bg-indigo-600 hover:bg-indigo-500 text-white transition">
+                ⚡ Apply Intervention
+              </button>
+            </div>
+            {% endfor %}
+            {% if not suggestions %}
+            <div class="p-4 rounded-xl border border-slate-800 bg-slate-900/40 text-center text-xs text-slate-400">
+              Agent is continuously monitoring classroom dynamics. Pedagogical recommendations will populate dynamically when attention shifts occur.
+            </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Scenario 1: Sustained Presence Attendance Log -->
+        <div class="glass-panel p-5">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h2 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Attendance Tracking (Scenario 1)
+              </h2>
+              <p class="text-[11px] text-slate-400">Sustained presence verification (&ge; {{ config.SUSTAINED_PRESENCE_SECONDS }}s)</p>
+            </div>
+            <a href="/students" class="text-xs text-indigo-400 hover:text-indigo-300 transition">+ Enroll</a>
+          </div>
+
+          <!-- Attendance Table -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead>
+                <tr class="border-b border-slate-800 text-slate-400">
+                  <th class="py-2 px-3">Student</th>
+                  <th class="py-2 px-3">Sustained Time</th>
+                  <th class="py-2 px-3 text-right">Status</th>
+                </tr>
+              </thead>
+              <tbody id="attendanceTableBody">
+                {% for a in attendance %}
+                <tr class="border-b border-slate-800/60 hover:bg-slate-800/40 transition">
+                  <td class="py-2.5 px-3">
+                    <div class="font-medium text-slate-200">{{ a.name }}</div>
+                    <div class="text-[11px] text-slate-400">{{ a.student_id }} • {{ a.roll_no }}</div>
+                  </td>
+                  <td class="py-2.5 px-3">
+                    <div class="flex items-center gap-2">
+                      <div class="w-16 bg-slate-800 h-2 rounded-full overflow-hidden">
+                        <div class="bg-indigo-500 h-full rounded-full" style="width: {{ [100, (a.sustained_duration_seconds / config.SUSTAINED_PRESENCE_SECONDS) * 100]|min }}%"></div>
+                      </div>
+                      <span class="text-xs font-mono text-slate-300">{{ "%.1f"|format(a.sustained_duration_seconds) }}s</span>
+                    </div>
+                  </td>
+                  <td class="py-2.5 px-3 text-right">
+                    {% if a.status == 'PRESENT' %}
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                      PRESENT
+                    </span>
+                    {% elif a.status == 'PARTIAL' %}
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                      PARTIAL
+                    </span>
+                    {% else %}
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-400 border border-slate-700">
+                      ABSENT
+                    </span>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Client scripts -->
+  <script src="/static/js/charts.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

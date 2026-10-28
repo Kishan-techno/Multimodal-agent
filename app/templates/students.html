@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Roster - Multimodal Attendance & Engagement Agent</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+
+  <!-- Header -->
+  <header class="border-b border-slate-800 bg-slate-900/60 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+        </a>
+        <div>
+          <h1 class="text-base font-bold text-white">Student Enrollment & Directory</h1>
+          <p class="text-xs text-slate-400">Enrolled Student Profiles & Face Gallery Database</p>
+        </div>
+      </div>
+      <nav class="flex items-center gap-2">
+        <a href="/" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white transition">Back to Live Classroom</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Enrollment Form (4 cols) -->
+      <div class="lg:col-span-4">
+        <div class="glass-panel p-6 sticky top-24">
+          <h2 class="text-sm font-bold text-white uppercase tracking-wider mb-2 flex items-center gap-2">
+            <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
+            Enroll New Student
+          </h2>
+          <p class="text-xs text-slate-400 mb-6">Register a student to activate automated sustained presence tracking.</p>
+
+          <form action="/api/students" method="POST" class="space-y-4">
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1">Student ID *</label>
+              <input type="text" name="student_id" required placeholder="e.g. STU-1007" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1">Full Name *</label>
+              <input type="text" name="name" required placeholder="e.g. Maya Lin" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1">University Email *</label>
+              <input type="email" name="email" required placeholder="maya.lin@university.edu" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1">Roll Number *</label>
+                <input type="text" name="roll_no" required placeholder="AI-2024-055" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1">Department</label>
+                <input type="text" name="department" value="Artificial Intelligence" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <button type="submit" class="w-full py-2.5 px-4 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-lg shadow-indigo-600/30 transition">
+                Register Student Profile
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Enrolled Roster Table (8 cols) -->
+      <div class="lg:col-span-8">
+        <div class="glass-panel p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h2 class="text-sm font-bold text-white uppercase tracking-wider">Enrolled Classroom Roster</h2>
+              <p class="text-xs text-slate-400">Total Enrolled: <strong class="text-indigo-300">{{ students|length }} Students</strong></p>
+            </div>
+            <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              Active Database
+            </span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead>
+                <tr class="border-b border-slate-800 text-slate-400">
+                  <th class="py-3 px-4">Student</th>
+                  <th class="py-3 px-4">Roll Number</th>
+                  <th class="py-3 px-4">Department</th>
+                  <th class="py-3 px-4">Email</th>
+                  <th class="py-3 px-4 text-right">Verification</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800/60">
+                {% for s in students %}
+                <tr class="hover:bg-slate-800/40 transition">
+                  <td class="py-3 px-4 flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-indigo-600/30 border border-indigo-500/40 flex items-center justify-center font-bold text-indigo-300">
+                      {{ s.name[0] }}
+                    </div>
+                    <div>
+                      <div class="font-semibold text-white">{{ s.name }}</div>
+                      <div class="text-[11px] text-slate-400 font-mono">{{ s.student_id }}</div>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4 font-mono text-slate-300">{{ s.roll_no }}</td>
+                  <td class="py-3 px-4 text-slate-300">{{ s.department }}</td>
+                  <td class="py-3 px-4 text-slate-400">{{ s.email }}</td>
+                  <td class="py-3 px-4 text-right">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                      ENROLLED
+                    </span>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</body>
+</html>
