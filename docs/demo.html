@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Video Walkthrough & Transcript Showcase - Multimodal Attendance & Engagement Agent</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: #090d16; color: #f8fafc; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .glass-card { background: rgba(17, 24, 39, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    .screen-frame { background: #020617; border: 2px solid rgba(99, 102, 241, 0.3); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(99, 102, 241, 0.15); }
+    .pulse-glow { animation: pulseGlow 2s infinite; }
+    @keyframes pulseGlow { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; filter: drop-shadow(0 0 10px #6366f1); } }
+  </style>
+</head>
+<body class="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+
+  <div class="max-w-6xl mx-auto space-y-6">
+
+    <!-- Top Showcase Header -->
+    <div class="glass-card p-6 rounded-2xl flex flex-wrap items-center justify-between gap-4 border-indigo-500/20">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 uppercase tracking-wider">OFFICIAL PROJECT DEMO</span>
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase tracking-wider">STEP-BY-STEP VERIFIED</span>
+          </div>
+          <h1 class="text-xl sm:text-2xl font-black text-white mt-1">
+            Multimodal Attendance & Engagement Agent — Interactive Video Walkthrough
+          </h1>
+          <p class="text-xs text-slate-400">Classroom Intelligence System • Automated Attendance • Dynamics Fusion • AI Pedagogical Agent</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="https://github.com/Kishan-techno/Multimodal-agent" target="_blank" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 transition flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+          GitHub Repository
+        </a>
+      </div>
+    </div>
+
+    <!-- MAIN SIMULATED VIDEO PLAYER -->
+    <div class="screen-frame rounded-2xl overflow-hidden relative">
+
+      <!-- Video Header Bar -->
+      <div class="bg-slate-900/90 px-4 py-2.5 border-b border-slate-800 flex items-center justify-between text-xs">
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+          <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+          <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+          <span class="ml-2 text-slate-400 font-mono">Multimodal-Classroom-Agent-v1.0.0-Demo.mp4</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span id="playerBadge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 font-mono">
+            CHAPTER 1: INTRODUCTION
+          </span>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 font-mono">
+            1080p 60FPS
+          </span>
+        </div>
+      </div>
+
+      <!-- Video Display Stage (Interactive Simulation Screen) -->
+      <div id="videoStage" class="relative aspect-[16/9] w-full bg-slate-950 p-4 sm:p-6 flex flex-col justify-between overflow-hidden">
+
+        <!-- Background Video Animation Grid -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#6366f1 1px, transparent 1px); background-size: 24px 24px;"></div>
+
+        <!-- Simulated Top Dashboard Header inside the video -->
+        <div class="relative z-10 flex items-center justify-between bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-xs">
+          <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center font-black text-white text-xs">AI</div>
+            <div>
+              <div class="font-bold text-white text-xs">Lecture 14: Multimodal AI & Neural Architectures</div>
+              <div class="text-[10px] text-slate-400">Prof. Harrison Vance • Active Enrolled: 6 Students</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+              ● WEBCAM LIVE
+            </span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+              PRIVACY: EDGE PROCESSING
+            </span>
+          </div>
+        </div>
+
+        <!-- Active Scene Content -->
+        <div id="sceneContainer" class="relative z-10 my-auto grid grid-cols-1 md:grid-cols-12 gap-4">
+
+          <!-- Left: Face Box & HUD Overlay -->
+          <div class="md:col-span-7 bg-slate-900/90 rounded-xl border border-slate-800 p-4 relative overflow-hidden">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[11px] font-bold uppercase text-slate-400">Live Video Stream & Tracking HUD</span>
+              <span id="scenePoseBadge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
+                Gaze: Center (0° Yaw, 0° Pitch)
+              </span>
+            </div>
+
+            <!-- Visual Face Bracket Viewport -->
+            <div class="h-44 bg-slate-950 rounded-lg relative flex items-center justify-center overflow-hidden border border-slate-800">
+              <!-- Avatar silhouette -->
+              <div class="w-16 h-16 rounded-full bg-slate-800 mb-6"></div>
+              <div class="w-36 h-20 rounded-t-full bg-slate-800 absolute bottom-0"></div>
+
+              <!-- Cybernetic Face Recognition Box Overlay -->
+              <div id="faceBox" class="absolute w-44 h-36 border-2 border-indigo-500 rounded-lg transition-all duration-500 flex flex-col justify-between p-2 shadow-lg shadow-indigo-500/20">
+                <div class="flex items-center justify-between text-[10px] font-bold bg-slate-900/90 px-2 py-1 rounded border border-indigo-500/30 text-white">
+                  <span id="faceStudentName">👤 Alex Chen</span>
+                  <span id="faceConfidence" class="text-cyan-400">94.2%</span>
+                </div>
+                <div class="text-center">
+                  <span id="faceActionBadge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold">
+                    SUSTAINED: 5.2s [VERIFIED]
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Signal Progress Bars -->
+            <div class="grid grid-cols-2 gap-2 mt-3 text-[11px]">
+              <div>
+                <div class="flex justify-between text-slate-400 mb-0.5">
+                  <span>Visual Attention</span>
+                  <span id="vAttVal" class="text-emerald-400 font-mono font-bold">88%</span>
+                </div>
+                <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                  <div id="vAttBar" class="bg-emerald-400 h-full rounded-full transition-all duration-500" style="width: 88%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-slate-400 mb-0.5">
+                  <span>Acoustic Energy (VAD)</span>
+                  <span id="vAudVal" class="text-cyan-400 font-mono font-bold">78%</span>
+                </div>
+                <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                  <div id="vAudBar" class="bg-cyan-400 h-full rounded-full transition-all duration-500" style="width: 78%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Scenario Intelligence & Suggestions Feed -->
+          <div class="md:col-span-5 space-y-3">
+
+            <!-- Composite Engagement Gauge -->
+            <div class="bg-slate-900/90 rounded-xl border border-slate-800 p-3.5 flex items-center justify-between">
+              <div>
+                <div class="text-[10px] font-bold text-slate-400 uppercase">Composite Engagement</div>
+                <div id="sceneScore" class="text-3xl font-black font-mono text-white mt-0.5">86<span class="text-slate-500 text-sm">/100</span></div>
+              </div>
+              <div class="text-right">
+                <span id="sceneStatePill" class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                  OPTIMAL ENGAGEMENT
+                </span>
+                <div id="sceneTrend" class="text-[10px] text-emerald-400 font-bold mt-1">▲ RISING TREND</div>
+              </div>
+            </div>
+
+            <!-- Active AI Teaching Suggestion Card -->
+            <div id="sceneSuggestionCard" class="bg-indigo-950/40 rounded-xl border border-indigo-500/40 p-3.5 text-xs transition-all duration-500">
+              <div class="flex items-center justify-between mb-1">
+                <span id="suggBadge" class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-white/10 text-indigo-300">
+                  SCENARIO 3 • AGENT REASONER
+                </span>
+                <span class="text-[10px] text-slate-400">Live Assist</span>
+              </div>
+              <h4 id="suggTitle" class="font-bold text-white text-xs mb-1">High Interaction Synergy</h4>
+              <p id="suggDesc" class="text-[11px] text-slate-300 leading-relaxed mb-2">Classroom dynamics show high attentiveness and audio participation.</p>
+              <button class="px-2.5 py-1 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-[10px] transition">
+                ⚡ Apply Pedagogical Tip
+              </button>
+            </div>
+
+            <!-- Mini Roster Snapshot -->
+            <div class="bg-slate-900/90 rounded-xl border border-slate-800 p-3 text-[11px]">
+              <div class="flex items-center justify-between mb-1 text-slate-400 font-semibold text-[10px]">
+                <span>PARTICIPANT ACCUMULATOR</span>
+                <span class="text-emerald-400 font-bold">5 / 6 PRESENT</span>
+              </div>
+              <div class="flex items-center justify-between py-1 border-t border-slate-800">
+                <span class="text-white font-medium">Alex Chen (STU-1001)</span>
+                <span id="alexRosterStatus" class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400">5.2s • PRESENT</span>
+              </div>
+              <div class="flex items-center justify-between py-1 border-t border-slate-800">
+                <span class="text-white font-medium">Priya Sharma (STU-1002)</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400">6.0s • PRESENT</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Video Player Subtitle / Captions Bar -->
+        <div class="relative z-10 bg-black/85 backdrop-blur-md p-3 rounded-xl border border-indigo-500/30 text-center">
+          <div class="text-[10px] uppercase tracking-widest text-indigo-400 font-bold mb-0.5">VOICEOVER SUBTITLES & AUDIO TRANSCRIPT</div>
+          <div id="videoCaption" class="text-sm font-semibold text-white leading-snug">
+            "Welcome to the Multimodal Attendance & Engagement Agent demo. The system combines computer vision, audio processing, and agentic reasoning."
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Player Controls Bar -->
+      <div class="bg-slate-900 p-4 border-t border-slate-800 flex flex-col gap-3">
+        <!-- Scrubber Progress Bar -->
+        <div class="flex items-center gap-3">
+          <span id="currentTime" class="text-xs font-mono text-slate-400">00:00</span>
+          <div onclick="seekProgress(event)" class="flex-1 bg-slate-800 h-2.5 rounded-full overflow-hidden cursor-pointer relative">
+            <div id="playerProgress" class="bg-gradient-to-r from-indigo-500 to-cyan-400 h-full rounded-full transition-all duration-300" style="width: 5%"></div>
+          </div>
+          <span id="totalDuration" class="text-xs font-mono text-slate-400">02:30</span>
+        </div>
+
+        <!-- Buttons Row -->
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <button onclick="togglePlay()" id="btnPlay" class="px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white transition flex items-center gap-2 shadow-lg shadow-indigo-600/30">
+              <svg id="playIcon" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+              <span>Play Video Demo</span>
+            </button>
+            <button onclick="nextScene()" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
+              Next Chapter ⏭
+            </button>
+            <button onclick="restartDemo()" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
+              Restart ↺
+            </button>
+          </div>
+
+          <!-- Chapter Quick Jumps -->
+          <div class="flex flex-wrap items-center gap-1.5 text-xs">
+            <button onclick="jumpTo(0)" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-[11px]">1. Overview</button>
+            <button onclick="jumpTo(1)" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-[11px]">2. Scenario 1 (5s Attendance)</button>
+            <button onclick="jumpTo(2)" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-[11px]">3. Scenario 2 (Attention Drop)</button>
+            <button onclick="jumpTo(3)" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-[11px]">4. Scenario 3 (AI Agent)</button>
+            <button onclick="jumpTo(4)" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-[11px]">5. Audit Report & CSV</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FULL TIMESTAMPED SPOKEN TRANSCRIPT (For Review & Mentorship Audit) -->
+    <div class="glass-card p-6 rounded-2xl">
+      <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-800">
+        <div>
+          <h2 class="text-base font-bold text-white flex items-center gap-2">
+            <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            Full Video Audio Transcript & Step-by-Step Execution Log
+          </h2>
+          <p class="text-xs text-slate-400">Complete synchronized transcription detailing the 3 core project scenarios.</p>
+        </div>
+        <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300 font-mono">
+          5 CHAPTERS • 02:30 TOTAL
+        </span>
+      </div>
+
+      <div class="space-y-4 text-xs">
+
+        <!-- Chapter 1 -->
+        <div id="trans-0" class="p-3.5 rounded-xl border border-indigo-500/40 bg-indigo-950/20 transition-all duration-300">
+          <div class="flex items-center justify-between font-bold text-white mb-1">
+            <span class="text-indigo-400 font-mono">[00:00 - 00:30] Chapter 1: Introduction & Multimodal Perception Architecture</span>
+            <span class="text-[10px] text-slate-400">Overview</span>
+          </div>
+          <p class="text-slate-300 leading-relaxed">
+            "Hello mentor, welcome to the demonstration of the <strong>Multimodal Attendance & Engagement Agent</strong>. In educational institutions, attendance tracking is traditionally manual or limited to binary biometric checkpoints that provide zero context on learner participation. Our agent combines computer vision for face detection, head pose estimation, and facial valence, with audio signal processing for voice activity detection. The system operates 100% offline and preserves student privacy while empowering instructors with real-time actionable classroom intelligence."
+          </p>
+        </div>
+
+        <!-- Chapter 2 -->
+        <div id="trans-1" class="p-3.5 rounded-xl border border-slate-800 bg-slate-900/40 transition-all duration-300">
+          <div class="flex items-center justify-between font-bold text-white mb-1">
+            <span class="text-emerald-400 font-mono">[00:30 - 01:10] Chapter 2: Scenario 1 — Automated Attendance Tracking (Sustained Presence)</span>
+            <span class="text-[10px] text-slate-400">Scenario 1</span>
+          </div>
+          <p class="text-slate-300 leading-relaxed">
+            "Now let's examine <strong>Scenario 1: Automated Attendance Tracking</strong>. Traditional facial recognition falsely marks a student present if they merely walk past the door for a single frame. In our system, attendance is marked based on <em>sustained presence</em>. Notice Alex Chen entering the frame: our temporal accumulator begins tracking continuous seconds. At 2.0 seconds, his status transitions to PARTIAL. As continuous presence crosses our configured 5.0-second threshold, his status automatically locks to <strong>PRESENT</strong> with 94.2% match confidence, generating a verified timestamped record."
+          </p>
+        </div>
+
+        <!-- Chapter 3 -->
+        <div id="trans-2" class="p-3.5 rounded-xl border border-slate-800 bg-slate-900/40 transition-all duration-300">
+          <div class="flex items-center justify-between font-bold text-white mb-1">
+            <span class="text-amber-400 font-mono">[01:10 - 01:50] Chapter 3: Scenario 2 — Engagement & Session Dynamics Analysis</span>
+            <span class="text-[10px] text-slate-400">Scenario 2</span>
+          </div>
+          <p class="text-slate-300 leading-relaxed">
+            "In <strong>Scenario 2</strong>, the system continuously analyzes behavioral indicators: head pose yaw, pitch, and roll, inactivity duration, and classroom audio activity. Watch as we simulate an attention drop: the participant looks down at a smartphone (pitch drops to -28°), and prolonged silence exceeds 15 seconds. Our weighted multimodal fusion engine immediately calculates the dip: visual attention falls to 32%, acoustic energy falls to 18%, and the composite engagement index declines to 38%, entering the amber/red alert zone on our live rolling Chart.js timeline."
+          </p>
+        </div>
+
+        <!-- Chapter 4 -->
+        <div id="trans-3" class="p-3.5 rounded-xl border border-slate-800 bg-slate-900/40 transition-all duration-300">
+          <div class="flex items-center justify-between font-bold text-white mb-1">
+            <span class="text-cyan-400 font-mono">[01:50 - 02:15] Chapter 4: Scenario 3 — AI-Driven Teaching Suggestions Agent</span>
+            <span class="text-[10px] text-slate-400">Scenario 3</span>
+          </div>
+          <p class="text-slate-300 leading-relaxed">
+            "In <strong>Scenario 3</strong>, our agent-based decision-support engine intervenes. Detecting the sustained attention drop and prolonged silence, the agent generates an instant, context-aware teaching recommendation card in the instructor's cockpit: <em>'Attention Drop Detected: Visual attention dropped to 32%. Consider launching a 30-second live quiz or presenting a contrasting visual slide.'</em> The instructor can click 'Apply Intervention' to immediately re-engage the classroom without enforcing punitive actions."
+          </p>
+        </div>
+
+        <!-- Chapter 5 -->
+        <div id="trans-4" class="p-3.5 rounded-xl border border-slate-800 bg-slate-900/40 transition-all duration-300">
+          <div class="flex items-center justify-between font-bold text-white mb-1">
+            <span class="text-purple-400 font-mono">[02:15 - 02:30] Chapter 5: Audit Reports, CSV Export & Institutional Compliance</span>
+            <span class="text-[10px] text-slate-400">Export & Audit</span>
+          </div>
+          <p class="text-slate-300 leading-relaxed">
+            "Finally, the platform maintains complete persistence via SQLite. Instructors can navigate to the Student Registry to enroll new learners, view historical session analytics, and export official timestamped CSV attendance spreadsheets or print formal audit reports. This concludes our walkthrough of the Multimodal Attendance & Engagement Agent."
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Video Walkthrough Animation Controller -->
+  <script>
+    let isPlaying = false;
+    let currentChapter = 0;
+    let timer = null;
+    let elapsedSeconds = 0;
+    const totalSeconds = 150; // 2:30
+
+    const chapters = [
+      {
+        title: "CHAPTER 1: INTRODUCTION & OVERVIEW",
+        startTime: 0,
+        endTime: 30,
+        studentName: "👤 Alex Chen",
+        conf: "94.2%",
+        boxColor: "#6366f1",
+        poseBadge: "Gaze: Center (0° Yaw, 0° Pitch)",
+        actionBadge: "TRACKING ACTIVE • 0.8s",
+        score: "86",
+        scorePill: "OPTIMAL ENGAGEMENT",
+        scorePillColor: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+        trend: "▲ RISING TREND",
+        trendColor: "text-emerald-400",
+        vAtt: "88%",
+        vAud: "78%",
+        alexStatus: "0.8s • INITIAL SCAN",
+        alexBadge: "bg-slate-800 text-slate-300",
+        suggBadge: "LOW • REINFORCEMENT",
+        suggTitle: "Optimal Visual Pacing",
+        suggDesc: "Learners are highly attentive to the introductory lecture slides.",
+        suggColor: "border-indigo-500/40 bg-indigo-950/20 text-indigo-200",
+        caption: '"Welcome to the Multimodal Attendance & Engagement Agent demo. The system combines computer vision, audio processing, and agentic reasoning."'
+      },
+      {
+        title: "CHAPTER 2: SCENARIO 1 — SUSTAINED PRESENCE (5.0s)",
+        startTime: 30,
+        endTime: 70,
+        studentName: "👤 Alex Chen [ID: STU-1001]",
+        conf: "95.8%",
+        boxColor: "#10b981",
+        poseBadge: "Direct Visual Focus",
+        actionBadge: "SUSTAINED: 5.0s [VERIFIED PRESENT]",
+        score: "92",
+        scorePill: "VERIFIED PRESENT",
+        scorePillColor: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+        trend: "▲ SUSTAINED VERIFIED",
+        trendColor: "text-emerald-400",
+        vAtt: "94%",
+        vAud: "82%",
+        alexStatus: "5.0s • PRESENT",
+        alexBadge: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+        suggBadge: "SCENARIO 1 • SUSTAINED TRACKING",
+        suggTitle: "Attendance Verified (Alex Chen)",
+        suggDesc: "Sustained presence threshold (>= 5.0s continuous) achieved. Attendance logged automatically to SQLite database.",
+        suggColor: "border-emerald-500/40 bg-emerald-950/20 text-emerald-200",
+        caption: '"Observing Scenario 1: Sustained presence verification requires at least 5.0 continuous seconds before marking status as PRESENT."'
+      },
+      {
+        title: "CHAPTER 3: SCENARIO 2 — ATTENTION DROP DYNAMICS",
+        startTime: 70,
+        endTime: 110,
+        studentName: "⚠️ Alex Chen (Distracted)",
+        conf: "89.4%",
+        boxColor: "#f59e0b",
+        poseBadge: "Looking Down (Phone/Desk) -28° Pitch",
+        actionBadge: "ATTENTION DROP DETECTED",
+        score: "38",
+        scorePill: "ATTENTION DROP",
+        scorePillColor: "bg-rose-500/20 text-rose-400 border-rose-500/30",
+        trend: "▼ DROPOUT DETECTED",
+        trendColor: "text-rose-400",
+        vAtt: "32%",
+        vAud: "18%",
+        alexStatus: "ATTENTION DROP",
+        alexBadge: "bg-amber-500/20 text-amber-300",
+        suggBadge: "HIGH PRIORITY • PACING",
+        suggTitle: "Learner Attention Drop Detected",
+        suggDesc: "Visual attention dropped to 32% with prolonged silence. Learners appear to be looking down at mobile devices.",
+        suggColor: "border-rose-500/40 bg-rose-950/20 text-rose-200",
+        caption: '"In Scenario 2, behavioral indicators detect phone distraction and prolonged silence. Composite engagement score falls to 38%."'
+      },
+      {
+        title: "CHAPTER 4: SCENARIO 3 — AI TEACHING SUGGESTIONS",
+        startTime: 110,
+        endTime: 135,
+        studentName: "👤 Alex Chen",
+        conf: "93.0%",
+        boxColor: "#818cf8",
+        poseBadge: "Interactive Checkpoint",
+        actionBadge: "PEDAGOGICAL INTERVENTION",
+        score: "65",
+        scorePill: "INTERVENTION ACTIVE",
+        scorePillColor: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+        trend: "▲ RECOVERING ENGAGEMENT",
+        trendColor: "text-cyan-400",
+        vAtt: "75%",
+        vAud: "70%",
+        alexStatus: "ENGAGEMENT RECOVERING",
+        alexBadge: "bg-indigo-500/20 text-indigo-300",
+        suggBadge: "ACTION TRIGGERED • QUIZ LAUNCHED",
+        suggTitle: "Intervention Executed: 30s Checkpoint Quiz",
+        suggDesc: "Instructor prompted comprehension check. Classroom engagement restored from 38% to 65%.",
+        suggColor: "border-indigo-500/40 bg-indigo-950/20 text-indigo-200",
+        caption: '"Scenario 3 triggers our agent-based decision support: the instructor launches a 30s quick quiz, rapidly restoring engagement."'
+      },
+      {
+        title: "CHAPTER 5: AUDIT REPORT & CSV EXPORT",
+        startTime: 135,
+        endTime: 150,
+        studentName: "📋 Official Session Audit",
+        conf: "100%",
+        boxColor: "#a855f7",
+        poseBadge: "Session Complete (100% Verified)",
+        actionBadge: "AUDIT EXPORT READY",
+        score: "88",
+        scorePill: "SESSION AUDITED",
+        scorePillColor: "bg-purple-500/20 text-purple-400 border-purple-500/30",
+        trend: "● AUDIT COMPLETE",
+        trendColor: "text-purple-400",
+        vAtt: "88%",
+        vAud: "80%",
+        alexStatus: "PRESENT • 5.2s",
+        alexBadge: "bg-emerald-500/20 text-emerald-400",
+        suggBadge: "EXPORT • INSTITUTIONAL COMPLIANCE",
+        suggTitle: "Audit Report & Timestamped CSV",
+        suggDesc: "Official audit report generated with verified sustained presence records and engagement metrics.",
+        suggColor: "border-purple-500/40 bg-purple-950/20 text-purple-200",
+        caption: '"Finally, instructors can download verified timestamped CSV logs and print formal audit reports for academic compliance."'
+      }
+    ];
+
+    function updateScene(idx) {
+      currentChapter = idx;
+      const c = chapters[idx];
+
+      // Update Header Badge
+      document.getElementById('playerBadge').innerText = c.title;
+
+      // Update Face Box
+      const fb = document.getElementById('faceBox');
+      fb.style.borderColor = c.boxColor;
+      document.getElementById('faceStudentName').innerText = c.studentName;
+      document.getElementById('faceConfidence').innerText = c.conf;
+      document.getElementById('faceActionBadge').innerText = c.actionBadge;
+      document.getElementById('scenePoseBadge').innerText = c.poseBadge;
+
+      // Signals
+      document.getElementById('vAttVal').innerText = c.vAtt;
+      document.getElementById('vAttBar').style.width = c.vAtt;
+      document.getElementById('vAudVal').innerText = c.vAud;
+      document.getElementById('vAudBar').style.width = c.vAud;
+
+      // Score
+      document.getElementById('sceneScore').innerHTML = `${c.score}<span class="text-slate-500 text-sm">/100</span>`;
+      document.getElementById('sceneStatePill').innerText = c.scorePill;
+      document.getElementById('sceneStatePill').className = `px-2.5 py-1 rounded-full text-[10px] font-bold ${c.scorePillColor}`;
+      document.getElementById('sceneTrend').innerText = c.trend;
+      document.getElementById('sceneTrend').className = `text-[10px] font-bold mt-1 ${c.trendColor}`;
+
+      // Suggestion
+      document.getElementById('suggBadge').innerText = c.suggBadge;
+      document.getElementById('suggTitle').innerText = c.suggTitle;
+      document.getElementById('suggDesc').innerText = c.suggDesc;
+      document.getElementById('sceneSuggestionCard').className = `rounded-xl border p-3.5 text-xs transition-all duration-500 ${c.suggColor}`;
+
+      // Roster
+      document.getElementById('alexRosterStatus').innerText = c.alexStatus;
+      document.getElementById('alexRosterStatus').className = `px-2 py-0.5 rounded text-[10px] font-bold ${c.alexBadge}`;
+
+      // Caption
+      document.getElementById('videoCaption').innerText = c.caption;
+
+      // Highlight Active Transcript
+      for (let i = 0; i < 5; i++) {
+        const tr = document.getElementById(`trans-${i}`);
+        if (i === idx) {
+          tr.className = "p-3.5 rounded-xl border border-indigo-500/60 bg-indigo-950/40 shadow-lg shadow-indigo-500/10 transition-all duration-300 ring-1 ring-indigo-500/40";
+        } else {
+          tr.className = "p-3.5 rounded-xl border border-slate-800 bg-slate-900/40 opacity-70 transition-all duration-300";
+        }
+      }
+    }
+
+    function togglePlay() {
+      isPlaying = !isPlaying;
+      const btn = document.getElementById('btnPlay');
+      if (isPlaying) {
+        btn.innerHTML = `<span>Pause Video Demo</span>`;
+        btn.className = "px-4 py-2 rounded-xl text-xs font-bold bg-amber-600 hover:bg-amber-500 text-white transition flex items-center gap-2 shadow-lg";
+        timer = setInterval(tick, 1000);
+      } else {
+        btn.innerHTML = `<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg><span>Resume Video Demo</span>`;
+        btn.className = "px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white transition flex items-center gap-2 shadow-lg shadow-indigo-600/30";
+        clearInterval(timer);
+      }
+    }
+
+    function tick() {
+      elapsedSeconds += 1;
+      if (elapsedSeconds >= totalSeconds) {
+        elapsedSeconds = 0;
+      }
+      updateTimeDisplay();
+
+      // Check current chapter
+      for (let i = 0; i < chapters.length; i++) {
+        if (elapsedSeconds >= chapters[i].startTime && elapsedSeconds < chapters[i].endTime) {
+          if (currentChapter !== i) updateScene(i);
+          break;
+        }
+      }
+    }
+
+    function updateTimeDisplay() {
+      const min = Math.floor(elapsedSeconds / 60);
+      const sec = elapsedSeconds % 60;
+      document.getElementById('currentTime').innerText = `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+      const pct = (elapsedSeconds / totalSeconds) * 100;
+      document.getElementById('playerProgress').style.width = `${pct}%`;
+    }
+
+    function jumpTo(idx) {
+      currentChapter = idx;
+      elapsedSeconds = chapters[idx].startTime;
+      updateTimeDisplay();
+      updateScene(idx);
+    }
+
+    function nextScene() {
+      currentChapter = (currentChapter + 1) % chapters.length;
+      jumpTo(currentChapter);
+    }
+
+    function restartDemo() {
+      jumpTo(0);
+    }
+
+    function seekProgress(e) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const pct = clickX / rect.width;
+      elapsedSeconds = Math.floor(pct * totalSeconds);
+      updateTimeDisplay();
+      for (let i = 0; i < chapters.length; i++) {
+        if (elapsedSeconds >= chapters[i].startTime && elapsedSeconds < chapters[i].endTime) {
+          updateScene(i);
+          break;
+        }
+      }
+    }
+
+    // Auto-start demonstration on load
+    document.addEventListener('DOMContentLoaded', () => {
+      updateScene(0);
+      togglePlay();
+    });
+  </script>
+</body>
+</html>
