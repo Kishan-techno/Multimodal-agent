@@ -9,9 +9,10 @@
 ---
 
 ## 📌 Project Links for Mentor Review & Showcase
-- **Direct Working Live Demo Link**: [https://kishan-techno.github.io/Multimodal-agent/](https://kishan-techno.github.io/Multimodal-agent/)
 - **GitHub Repository**: [https://github.com/Kishan-techno/Multimodal-agent](https://github.com/Kishan-techno/Multimodal-agent)
-- **Direct Video Showcase**: [https://kishan-techno.github.io/Multimodal-agent/](https://kishan-techno.github.io/Multimodal-agent/) *(Interactive web video simulator & live demonstration)*
+- **Live Demo Video Link (YouTube)**: [https://www.youtube.com/watch?v=IX6UoQFHfz0](https://www.youtube.com/watch?v=IX6UoQFHfz0)
+- **Secondary Web Face Attendance Video**: [https://www.youtube.com/watch?v=K2MslES-L-Q](https://www.youtube.com/watch?v=K2MslES-L-Q)
+- **Direct Interactive Web Showcase**: [https://kishan-techno.github.io/Multimodal-agent/](https://kishan-techno.github.io/Multimodal-agent/)
 
 ---
 
