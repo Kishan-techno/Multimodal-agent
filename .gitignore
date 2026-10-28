@@ -3,6 +3,7 @@ __pycache__/
 *$py.class
 *.log
 .python/
+data/*.db
 data/exports/*.csv
 .DS_Store
 Thumbs.db

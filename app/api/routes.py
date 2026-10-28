@@ -31,26 +31,32 @@ async def dashboard_view(request: Request):
     total_present = sum(1 for a in attendance if a["status"] == "PRESENT")
     total_partial = sum(1 for a in attendance if a["status"] == "PARTIAL")
 
-    return templates.TemplateResponse("index.html", {
-        "request": request,
-        "session": session,
-        "students": students,
-        "attendance": attendance,
-        "suggestions": [s for s in suggestions if not s["is_dismissed"]][:5],
-        "total_present": total_present,
-        "total_partial": total_partial,
-        "total_enrolled": len(students),
-        "config": config.ATTENDANCE_CONFIG
-    })
+    return templates.TemplateResponse(
+        request=request,
+        name="index.html",
+        context={
+            "session": session,
+            "students": students,
+            "attendance": attendance,
+            "suggestions": [s for s in suggestions if not s["is_dismissed"]][:5],
+            "total_present": total_present,
+            "total_partial": total_partial,
+            "total_enrolled": len(students),
+            "config": config.ATTENDANCE_CONFIG
+        }
+    )
 
 @router.get("/students", response_class=HTMLResponse)
 async def students_view(request: Request):
     """Student Enrollment & Roster Management."""
     students = db.get_all_students()
-    return templates.TemplateResponse("students.html", {
-        "request": request,
-        "students": students
-    })
+    return templates.TemplateResponse(
+        request=request,
+        name="students.html",
+        context={
+            "students": students
+        }
+    )
 
 @router.post("/api/students")
 async def add_student_endpoint(
@@ -80,12 +86,15 @@ async def analytics_view(request: Request):
     metrics = db.get_session_metrics(session["id"], limit=180)
     attendance = db.get_session_attendance(session["id"])
     
-    return templates.TemplateResponse("analytics.html", {
-        "request": request,
-        "session": session,
-        "metrics": metrics,
-        "attendance": attendance
-    })
+    return templates.TemplateResponse(
+        request=request,
+        name="analytics.html",
+        context={
+            "session": session,
+            "metrics": metrics,
+            "attendance": attendance
+        }
+    )
 
 @router.get("/reports", response_class=HTMLResponse)
 async def reports_view(request: Request):
@@ -98,16 +107,19 @@ async def reports_view(request: Request):
     avg_engagement = round(sum(m["overall_score"] for m in metrics) / max(1, len(metrics)), 1) if metrics else 76.5
     total_present = sum(1 for a in attendance if a["status"] == "PRESENT")
 
-    return templates.TemplateResponse("report.html", {
-        "request": request,
-        "session": session,
-        "attendance": attendance,
-        "suggestions": suggestions,
-        "avg_engagement": avg_engagement,
-        "total_present": total_present,
-        "total_enrolled": len(attendance),
-        "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    })
+    return templates.TemplateResponse(
+        request=request,
+        name="report.html",
+        context={
+            "session": session,
+            "attendance": attendance,
+            "suggestions": suggestions,
+            "avg_engagement": avg_engagement,
+            "total_present": total_present,
+            "total_enrolled": len(attendance),
+            "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        }
+    )
 
 @router.get("/api/attendance/export.csv")
 async def export_attendance_csv():
