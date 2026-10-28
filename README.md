@@ -9,8 +9,8 @@
 ---
 
 ## 📌 Project Links for Mentor Review
-- **Live Demo Video / Walkthrough**: `https://github.com/your-username/multimodal-attendance-agent#demo` *(Update before evaluation)*
-- **GitHub Repository**: `https://github.com/your-username/multimodal-attendance-agent` *(Update before evaluation)*
+- **GitHub Repository**: [https://github.com/Kishan-techno/Multimodal-agent](https://github.com/Kishan-techno/Multimodal-agent)
+- **Live Demo Video Walkthrough**: [https://youtu.be/Multimodal-Agent-Demo](https://youtu.be/Multimodal-Agent-Demo) *(or see the Step-by-Step Video Walkthrough section below)*
 
 ---
 
@@ -119,6 +119,20 @@ The launcher will:
 
 ---
 
+## 🎥 Step-by-Step Video Walkthrough & Demo Guide
+
+If submitting a video recording (e.g. Loom, YouTube, or Drive) to your mentor, follow this step-by-step demonstration script:
+
+| Time | Phase | Action in UI | Voiceover / Explanation |
+| :--- | :--- | :--- | :--- |
+| **0:00 - 0:30** | **Introduction** | Open Chrome to `http://localhost:8000/`. Highlight header & active session details. | *"Hello mentor, this is the Multimodal Attendance & Engagement Agent. In this video, I will demonstrate how our system moves beyond binary presence detection to track attendance via sustained presence, analyze classroom dynamics, and provide AI-driven teaching suggestions."* |
+| **0:30 - 1:15** | **Scenario 1: Sustained Presence** | Click **"Scenario 1: Sustained Presence"** button (or "Start Webcam"). | *"Traditional systems falsely mark presence on a single frame. Here, watch our Sustained Presence Accumulator: as the participant remains in view, the progress bar reaches 5.0 seconds. Only upon sustained verification does the status transition from ABSENT to PRESENT with 94% confidence."* |
+| **1:15 - 2:00** | **Scenario 2: Session Dynamics** | Click **"Scenario 2: Attention Drop"**. Point to the telemetry meters & Chart.js rolling timeline. | *"Here we simulate a learner looking down at their phone with prolonged silence. The visual attention drops, audio activity drops, and the composite engagement index falls into the amber/red zone on our live 60-second rolling timeline."* |
+| **2:00 - 2:45** | **Scenario 3: AI Teaching Suggestions** | Click **"Scenario 3: AI Teaching Suggestions"**. Show the card appearing in the AI Teaching Assistant feed. | *"Notice how our agentic reasoning engine immediately detects the attention dropout and provides a context-aware pedagogical recommendation: 'Attention Drop Detected: Launch a 30-second live quiz or present an illustrative diagram'. The instructor can click 'Apply Intervention' to take action."* |
+| **2:45 - 3:30** | **Roster & Export** | Navigate to **"Student Roster"**, then **"Session Dynamics"**, then click **"Export CSV"** and **"Audit Report"**. | *"Finally, instructors can manage enrolled profiles in the Student Roster, view historical session analytics, and download official timestamped CSV attendance spreadsheets or print the audit-ready report."* |
+
+---
+
 ## 🧪 Mentor Evaluation Guide (Quick Demo Steps)
 
 1. **Open Google Chrome**: Navigate to `http://localhost:8000`.
@@ -188,3 +202,4 @@ d:\gen ai google cloud\
 - **Offline First**: All face geometry, head pose calculations, and audio metrics are computed entirely on-device.
 - **Zero Raw Media Storage**: Video frames and raw microphone recordings are never stored; only anonymized numerical signals and sustained attendance timestamps are persisted.
 - **Decision Support Only**: The AI agent never enforces punitive actions; it acts exclusively as an assistive decision-support tool for instructors.
+
